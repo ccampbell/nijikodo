@@ -177,7 +177,7 @@ class Generic
     protected function _tokenize($match) {
         $key = '##' . uniqid() . '##';
 
-        if ((isset($match[0]) && $match[0] == '/') || (isset($match[0]) && $match[0] == '#')) {
+        if (isset($match[0]) && ($match[0] == '/' || $match[0] == '#')) {
             $this->_strings[$key] = '<span class="' . $this->_css_prepend . '_comment">' . $match . '</span>';
             return $key;
         }
@@ -223,7 +223,7 @@ class Generic
      */
     protected function _addConstantsPattern()
     {
-        $this->_addPattern('/(?<!\w|>)([A-Z_0-9]{2,})(?!\w)/x', '<span class="' . $this->_css_prepend . '_int">$1</span>');
+        $this->_addPattern('/(?<!\w|>)([A-Z_0-9]{2,})(?!\w|\[)/x', '<span class="' . $this->_css_prepend . '_int">$1</span>');
     }
 
     /**
