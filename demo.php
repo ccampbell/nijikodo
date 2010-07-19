@@ -118,7 +118,7 @@ $(document).ready(function() {
 <!-- html with php inside of it! -->
 <ul class="user_list">
     &lt;?php foreach ($this->users as $user): ?&gt;
-        <li><a href="&lt;php echo $user->getUrl(); ?&gt;">&lt;?php echo $user->getName(); ?&gt;</a></li>
+        <li><a href="&lt;?php echo $user->getUrl(); ?&gt;">&lt;?php echo $user->getName(); ?&gt;</a></li>
     &lt;?php endforeach; ?&gt;
 </ul>
 {code}
