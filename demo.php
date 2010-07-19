@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1>nijikodo</h1>
-<p>by <a href="http://www.craigiam.com">craig campbell</a></a>
+<p>by <a href="http://www.craigiam.com">craig campbell</a></p>
 <p>
     Nijikodo is an object oriented code syntax highlighting library written in PHP.<br />
     Current supported languages include CSS, HTML, JavaScript, and PHP.  The generic regex patterns work for other languages as well.
