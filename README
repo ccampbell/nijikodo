@@ -4,5 +4,7 @@ Current supported languages include CSS, HTML, JavaScript, and PHP.  The generic
 
 For usage examples see demo.php.
 
+http://www.craigiam.com/nijikodo
+
 Some of the generic regex patterns are based on this post by Dominic Szablewski:
 http://www.phoboslab.org/log/2007/08/generic-syntax-highlighting-with-regular-expressions
