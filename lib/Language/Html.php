@@ -23,8 +23,8 @@ class Html extends Generic
     protected function _preProcess()
     {
         $this->_addStringPattern();
-        $this->_addPattern('/(&gt;)((.|\n)*?)(&lt;)/i', '&gt;<span class="' . $this->_css_prepend . '_default">$2</span>&lt;');
-        $this->_addPattern('/(&lt;\!--)(.*?)(--&gt;)/', '<span class="' . $this->_css_prepend . '_comment">$1$2$3</span>');
+        $this->_addPattern('/(&gt;)((.|\n)*?)(&lt;)/i', '&gt;<span class="' . $this->_css_prefix . 'default">$2</span>&lt;');
+        $this->_addPattern('/(&lt;\!--)(.*?)(--&gt;)/', '<span class="' . $this->_css_prefix . 'comment">$1$2$3</span>');
     }
 
     /**
@@ -52,9 +52,9 @@ class Html extends Generic
     {
         $token = '$' . uniqid() . '$';
         $php = new Php($code[2]);
-        $php->setCssPrepend($this->_css_prepend);
+        $php->setCssPrefix($this->_css_prefix);
         $html = $code[1] . $php->getHtml() . $code[3];
-        $this->_php_blocks[$token] = '<span class="' . $this->_css_prepend . '_default">' . $html . '</span>';
+        $this->_php_blocks[$token] = '<span class="' . $this->_css_prefix . 'default">' . $html . '</span>';
         return $token;
     }
 

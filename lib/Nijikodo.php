@@ -12,12 +12,12 @@ class Nijikodo
     /**
      * @var string
      */
-    const DEFAULT_CSS_CLASS = 'niji';
+    const DEFAULT_CSS_PREFIX = 'niji_';
 
     /**
      * @var string
      */
-    protected static $_css_prepend = self::DEFAULT_CSS_CLASS;
+    protected static $_css_prefix = self::DEFAULT_CSS_PREFIX;
 
     /**
      * @var array
@@ -67,10 +67,10 @@ class Nijikodo
                 break;
         }
 
-        $code->setCssPrepend(self::$_css_prepend);
+        $code->setCssPrefix(self::$_css_prefix);
 
         // hate outputting html in php but that is the point of this library
-        return '<div class="' . self::$_css_prepend . '_code' . ($language !== null ? ' ' . self::$_css_prepend . '_' . $language : '') . '"' . ($height !== null ? ' style="height:' . $height . 'px;"' : '') . '>' . $code . '</div>';
+        return '<div class="' . self::$_css_prefix . 'code' . ($language !== null ? ' ' . self::$_css_prefix . '' . $language : '') . '"' . ($height !== null ? ' style="height:' . $height . 'px;"' : '') . '>' . $code . '</div>';
     }
 
     /**
@@ -81,9 +81,9 @@ class Nijikodo
      * @param string
      * @return void
      */
-    public static function prependCssClass($class = self::DEFAULT_CSS_CLASS)
+    public static function setCssPrefix($prefix = self::DEFAULT_CSS_PREFIX)
     {
-        self::$_css_prepend = $class;
+        self::$_css_prefix = $prefix;
     }
 
     /**

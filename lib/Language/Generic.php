@@ -18,7 +18,7 @@ class Generic
     /**
      * @var string
      */
-    protected $_css_prepend;
+    protected $_css_prefix;
 
     /**
      * @var string
@@ -58,9 +58,9 @@ class Generic
      * @param string
      * @return Generic
      */
-    public function setCssPrepend($class)
+    public function setCssPrefix($prefix)
     {
-        $this->_css_prepend = $class;
+        $this->_css_prefix = $prefix;
         return $this;
     }
 
@@ -178,11 +178,11 @@ class Generic
         $key = '##' . uniqid() . '##';
 
         if (isset($match[0]) && ($match[0] == '/' || $match[0] == '#')) {
-            $this->_strings[$key] = '<span class="' . $this->_css_prepend . '_comment">' . $match . '</span>';
+            $this->_strings[$key] = '<span class="' . $this->_css_prefix . 'comment">' . $match . '</span>';
             return $key;
         }
 
-        $this->_strings[$key] = '<span class="' . $this->_css_prepend . '_string">' . $match . '</span>';
+        $this->_strings[$key] = '<span class="' . $this->_css_prefix . 'string">' . $match . '</span>';
         return $key;
     }
 
@@ -203,7 +203,7 @@ class Generic
      */
     protected function _addMathPattern()
     {
-        $this->_addPattern('/(&gt;=|&amp;|&lt;=|&gt;|&lt;(?![\?])|=(?![^<>]*>)|\+|\-|\*|[:]{2}|[\|]{2}|[&]{2}|\!)/', '<span class="' . $this->_css_prepend . '_keyword">$1</span>');
+        $this->_addPattern('/(&gt;=|&amp;|&lt;=|&gt;|&lt;(?![\?])|=(?![^<>]*>)|\+|\-|\*|[:]{2}|[\|]{2}|[&]{2}|\!)/', '<span class="' . $this->_css_prefix . 'keyword">$1</span>');
     }
 
     /**
@@ -213,7 +213,7 @@ class Generic
      */
     protected function _addNumberPattern()
     {
-        $this->_addPattern('/(?<!\w)(0x[\da-f]+|\d+)(?!\w)/ix', '<span class="' . $this->_css_prepend . '_int">$1</span>');
+        $this->_addPattern('/(?<!\w)(0x[\da-f]+|\d+)(?!\w)/ix', '<span class="' . $this->_css_prefix . 'int">$1</span>');
     }
 
     /**
@@ -223,7 +223,7 @@ class Generic
      */
     protected function _addConstantsPattern()
     {
-        $this->_addPattern('/(?<!\w|>)([A-Z_0-9]{2,})(?!\w|\[)/x', '<span class="' . $this->_css_prepend . '_int">$1</span>');
+        $this->_addPattern('/(?<!\w|>)([A-Z_0-9]{2,})(?!\w|\[)/x', '<span class="' . $this->_css_prefix . 'int">$1</span>');
     }
 
     /**
@@ -238,7 +238,7 @@ class Generic
             array|object|resource|var|bool|boolean|int|integer|float|double|
             real|string|array|global|const|case|static|public|private|protected|
             published|extends|switch|void|this|self|struct|
-            char|signed|unsigned|short|long)(?!\w|=")/ix', '<span class="' . $this->_css_prepend . '_keyword">$1</span>');
+            char|signed|unsigned|short|long)(?!\w|=")/ix', '<span class="' . $this->_css_prefix . 'keyword">$1</span>');
     }
 
     /**
@@ -248,7 +248,7 @@ class Generic
      */
     protected function _addBoolPattern()
     {
-        $this->_addPattern('/(?<!\w|\$|\%|\@|>)(true|false|null)(?!\w|=")/ix', '<span class="' . $this->_css_prepend . '_int">$1</span>');
+        $this->_addPattern('/(?<!\w|\$|\%|\@|>)(true|false|null)(?!\w|=")/ix', '<span class="' . $this->_css_prefix . 'int">$1</span>');
     }
 
     /**
@@ -258,6 +258,6 @@ class Generic
      */
     protected function _addVarPattern()
     {
-        $this->_addPattern('/(?<!\w)((\$|\%|\@)(\-&gt;|\w)+)(?!\w)/ix', '<span class="' . $this->_css_prepend . '_variable">$1</span>');
+        $this->_addPattern('/(?<!\w)((\$|\%|\@)(\-&gt;|\w)+)(?!\w)/ix', '<span class="' . $this->_css_prefix . 'variable">$1</span>');
     }
 }

@@ -20,6 +20,6 @@ class Apache extends Generic
         $this->_addStringPattern();
         $this->_addNumberPattern();
         $this->_addMathPattern();
-        $this->_addPattern('/(SetEnv)/', '<span class="' . $this->_css_prepend . '_function">$1</span>');
+        $this->_addPattern('/(SetEnv)/', '<span class="' . $this->_css_prefix . 'function">$1</span>');
     }
 }
