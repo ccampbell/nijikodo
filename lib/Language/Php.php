@@ -27,7 +27,7 @@ class Php extends Generic
         $this->_addPattern('/class\s([^\s]+)/', 'class <span class="' . $this->_css_prepend . '_method">$1</span>');
         $this->_addPattern('/\.(?![^\'\"\s]*([\'\"]))/', '<span class="' . $this->_css_prepend . '_keyword">.</span>');
         $this->_addPattern('/function\s(.+)\(/', 'function <span class="' . $this->_css_prepend . '_method">$1</span>(');
-        $this->_addPattern('/array\(/', '<span class="' . $this->_css_prepend . '_function">array</span>(');
+        $this->_addPattern('/([^_])array\(/', '$1<span class="' . $this->_css_prepend . '_function">array</span>(');
         $this->_addPattern('/(\()([a-zA-Z0-9]+)(\s)(\$)/', '$1<span class="' . $this->_css_prepend . '_function">$2</span> $');
 
         // add the generic code handling stuff
