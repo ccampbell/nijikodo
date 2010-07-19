@@ -25,6 +25,6 @@ class Css extends Generic
         $this->_addPattern('/([0-9\.]+)(px)/', '<span class="' . $this->_css_prepend . '_int">$1</span><span class="' . $this->_css_prepend . '_keyword">px</span>');
         $this->_addPattern('/([0-9\.]+)(%)/', '<span class="' . $this->_css_prepend . '_int">$1</span><span class="' . $this->_css_prepend . '_keyword">%</span>');
         $this->_addPattern('/([0-9\.]+)(;)/', '<span class="' . $this->_css_prepend . '_int">$1</span>;');
-        $this->_addPattern('/([\:]{1}(\s)?(none|fixed|absolute))/', ':$2<span class="' . $this->_css_prepend . '_class">$3</span>');
+        $this->_addPattern('/([\:]{1}(\s)?(none|auto|pre-wrap|monospace|fixed|absolute))/', ':$2<span class="' . $this->_css_prepend . '_class">$3</span>');
     }
 }
