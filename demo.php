@@ -14,14 +14,23 @@
 <body>
 <h1>nijikodo</h1>
 <p>by <a href="http://www.craigiam.com">craig campbell</a></a>
+<p>
+    Nijikodo is an object oriented code syntax highlighting library written in PHP.<br />
+    Current supported languages include CSS, HTML, JavaScript, and PHP.  The generic regex patterns work for other languages as well.
+</p>
+
 
 <!-- usage instructions - view this part in a browser not as raw source -->
 <h2>requirements</h2>
 <p>php 5.3</p>
 
 <h2>usage</h2>
-<p>to syntax highlight code from a form field do something like this:</p>
+<p>to install put the lib directory somewhere in your include path:</p>
 <?php Nijikodo::captureStart(); ?>
+{code:php}
+include 'lib/Nijikodo.php';
+{code}
+<p>to syntax highlight code from a form field:</p>
 {code:php}
 $text = $_POST['text'];
 $text = Nijikodo::process($text);
@@ -46,7 +55,7 @@ $text = Nijikodo::process($text);
 <!-- output what has been captured -->
 &lt;?php echo Nijikodo::output(); ?&gt;
 {code}
-<p>finally if you have a string that you already know is a specific type of code you can do this:</p>
+<p>additionally if you have a string that you already know is a specific type of code you can do this:</p>
 {code:php}
 $string = '&lt;p&gt;this is my string&lt;/p&gt;';
 $html_string = Nijikodo::toHtml($string, 'html');
