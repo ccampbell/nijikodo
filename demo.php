@@ -29,18 +29,24 @@
 <?php Nijikodo::captureStart(); ?>
 {code:php}
 include 'lib/Nijikodo.php';
+
+// you can optionally set a css class prefix (defaults to 'niji_')
+Nijikodo::setCssPrefix('code_');
 {code}
+
 <p>to syntax highlight code from a form field:</p>
 {code:php}
 $text = $_POST['text'];
 $text = Nijikodo::process($text);
 {code}
+
 <p>use these special tags in the form field to specify that this block of text is code:</p>
 {code:shell}
 &#123;code:language|height:200&#125;
 // this is where the code goes
 &#123;code&#125;
 {code}
+
 <p>this can also be done directly in a view using output buffering like so:</p>
 {code:html}
 <!-- begin capturing code -->
@@ -55,6 +61,7 @@ $text = Nijikodo::process($text);
 <!-- output what has been captured -->
 &lt;?php echo Nijikodo::output(); ?&gt;
 {code}
+
 <p>additionally if you have a string that you already know is a specific type of code you can do this:</p>
 {code:php}
 $string = '&lt;p&gt;this is my string&lt;/p&gt;';
