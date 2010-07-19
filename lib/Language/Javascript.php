@@ -17,6 +17,7 @@ class Javascript extends Generic
      */
     protected function _preProcess()
     {
+        parent::_addStringPattern();
         $this->_addPattern('/\$\(/', '<span class="' . $this->_css_prepend . '_keyword">$</span>(');
         $this->_addPattern('/(.*)(\.)(.*)(\s?=\s?)function/', '<span class="' . $this->_css_prepend . '_class">$1</span>$2$3$4function');
         $this->_addPattern('/(.*?(\s)?)=(\s)?function/', '<span class="' . $this->_css_prepend . '_method">$1</span>=$2function');
@@ -26,5 +27,14 @@ class Javascript extends Generic
 
         // add the generic code handling stuff
         parent::_preProcess();
+    }
+
+    /**
+     * overriding parent function to not do anything when we process the other stuff
+     *
+     * @return void
+     */
+    protected function _addStringPattern()
+    {
     }
 }
