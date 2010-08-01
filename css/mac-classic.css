@@ -5,39 +5,52 @@
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    background: #03050A;
-    color: #fff;
+    background: #fff;
+    color: #000;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    border: 1px solid #aaa;
     white-space: pre-wrap;
 }
 
 .niji_html {
-    color: #7F90AA;
+    color: #1222F2;
 }
 
 .niji_keyword, .niji_define {
-    color: #FBDE2D;
+    color: #1222F2;
 }
 
-.niji_int, .niji_constant {
-    color: #D8FA3C;
+.niji_variable {
+    color: #398394;
+}
+
+.niji_int {
+    color: #0D1DCD;
+}
+
+.niji_constant {
+    color: #C51C1C;
 }
 
 .niji_comment {
-    color: #E40700;
+    color: #0066FF;
 }
 
-.niji_class, .niji_function {
-    color: #8DA6CE;
+.niji_class {
+    color: #585BF4;
+}
+
+.niji_function {
+    color: #0A169F;
 }
 
 .niji_string {
-    color: #61CE3C;
+    color: #316B17;
 }
 
 .niji_default {
-    color: #fff;
+    color: #000;
 }
 
 .niji_tag {
@@ -45,5 +58,5 @@
 }
 
 .niji_method {
-    color: #FF6400;
+    color: #0A169F;
 }
