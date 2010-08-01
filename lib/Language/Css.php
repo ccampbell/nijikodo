@@ -19,7 +19,7 @@ class Css extends Generic
     {
         $this->_addPattern('/((?<!\\\)&quot;.*?(?<!\\\)&quot;|(?<!\\\)\'(.*?)(?<!\\\)\')/', '<span class="' . $this->_css_prefix . 'string">$1</span>');
         $this->_addPattern('/\/\*(.+?)\*\//s', '<span class="' . $this->_css_prefix . 'comment">/*$1*/</span>');
-        $this->_addPattern('/(#)(.+?);/', '<span class="' . $this->_css_prefix . 'int">$1$2$3</span><span class="' . $this->_css_prefix . 'default">;</span>');
+        $this->_addPattern('/(#)(.+?);/', '<span class="' . $this->_css_prefix . 'constant">$1$2$3</span><span class="' . $this->_css_prefix . 'default">;</span>');
         $this->_addPattern('/(.+)([\:]{1}(.*;))/', '<span class="' . $this->_css_prefix . 'class">$1</span>:$3');
         $this->_addPattern('/(.+)([\{]{1})/', '<span class="' . $this->_css_prefix . 'method">$1</span>{');
         $this->_addPattern('/([0-9\.]+)(px)/', '<span class="' . $this->_css_prefix . 'int">$1</span><span class="' . $this->_css_prefix . 'keyword">px</span>');
