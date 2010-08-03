@@ -68,6 +68,13 @@ $string = '&lt;p&gt;this is my string&lt;/p&gt;';
 $html_string = Nijikodo::toHtml($string, 'html');
 {code}
 
+<p>finally if you would like to run your string through some other functions you can tokenize the code blocks and fill them back in later</p>
+{code:php}
+$text = $_POST['text'];
+$text = Nijikodo::tokenizeCodeBlocks($text);
+$text = nl2br($text);
+$text = Nijikodo::replaceTokens($text);
+{code}
 
 
 
