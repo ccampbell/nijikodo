@@ -70,7 +70,21 @@ class Nijikodo
         $code->setCssPrefix(self::$_css_prefix);
 
         // hate outputting html in php but that is the point of this library
-        return '<div class="' . self::$_css_prefix . 'code' . ($language !== null ? ' ' . self::$_css_prefix . '' . $language : '') . '"' . ($height !== null ? ' style="height:' . $height . 'px;"' : '') . '>' . $code . '</div>';
+        $output = '<div class="' . self::$_css_prefix . 'code';
+
+        if ($language !== null) {
+            $output .= ' ' . self::$_css_prefix . $language . '" style="';
+        }
+
+        // $output .= 'font-family: \'monaco\',courier,monospace; white-space: pre-wrap;';
+
+        if ($height !== null) {
+            $output .= ' height: ' . $height . 'px;';
+        }
+
+        $output .= '">' . $code . '</div>';
+
+        return $output;
     }
 
     /**
@@ -92,11 +106,35 @@ class Nijikodo
      * @param string $text
      * @return string
      */
-    public static function process($text)
+    public static function process($text, $use_pre_tag = false)
     {
-        $text = preg_replace_callback('/\{code(:)?([^\}]+\b)?\}(.+?)(\{code\})(\n)?/is', 'self::_tokenizeCode', $text);
+        $text = self::tokenizeCodeBlocks($text);
+        return self::replaceTokens($text, $use_pre_tag);
+    }
+
+    /**
+     * takes text input and strips out code blocks so that other text can be processed
+     *
+     * @param string
+     * @return string text without code blocks
+     */
+    public static function tokenizeCodeBlocks($text)
+    {
+        $text = preg_replace_callback('/\{code(:)?([^\}]+\b)?\}(.+?)(\{code\})(\n)?/is', 'self::_tokenizeCodeBlock', $text);
+        return $text;
+    }
+
+    /**
+     * puts tokenized code blocks back in
+     *
+     * @param string
+     * @param bool
+     * @return string
+     */
+    public static function replaceTokens($text, $use_pre_tag = false)
+    {
         foreach (self::$_tokenized as $key => $value) {
-            $text = str_replace($key, $value, $text);
+            $text = str_replace($key, $use_pre_tag ? '<code><pre>' . $value . '</pre></code>' : $value, $text);
         }
 
         return $text;
@@ -131,7 +169,7 @@ class Nijikodo
      * @param array $matches
      * @return string $token
      */
-    protected static function _tokenizeCode($matches)
+    protected static function _tokenizeCodeBlock($matches)
     {
         $language = isset($matches[2]) ? $matches[2] : null;
 
