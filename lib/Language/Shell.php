@@ -18,6 +18,6 @@ class Shell extends Generic
     protected function _preProcess()
     {
         $this->_addPattern('/(&amp;&amp;|export)/', '<span class="' . $this->_css_prefix . 'keyword">$1</span>');
-        $this->_addPattern('/((^|\s)(ls|rm|wget|cd|mkdir|gzip|unzip|sh|tar))/', '<span class="' . $this->_css_prefix . 'function">$1</span>');
+        $this->_addPattern('/((^|\s)(ls|rm|wget|cd|mkdir|gzip|unzip|sh|tar|cat))/', '<span class="' . $this->_css_prefix . 'function">$1</span>');
     }
 }

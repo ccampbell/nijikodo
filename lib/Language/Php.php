@@ -22,7 +22,7 @@ class Php extends Generic
         $this->_addPattern('/(include(_once)?|require(_once)?)([(\s|\()])/', '<span class="' . $this->_css_prefix . 'keyword">$1</span>$4');
         $this->_addPattern('/new\s([^()\$]+)/', 'new <span class="' . $this->_css_prefix . 'function">$1</span>');
         $this->_addPattern('/extends\s([^\s]+)/', 'extends <span class="' . $this->_css_prefix . 'method"><em>$1</em></span>');
-        $this->_addPattern('/([\:]{2})([A-Z_0-9]+)(;)/', '::<span class="' . $this->_css_prefix . 'constant">$2</span>;');
+        $this->_addPattern('/([\:]{2})([A-Z_0-9]+)(;|,)/', '::<span class="' . $this->_css_prefix . 'constant">$2</span>$3');
         $this->_addPattern('/([a-zA-Z_0-9]+)([\:]{2})/', '<span class="' . $this->_css_prefix . 'class">$1</span><span class="' . $this->_css_prefix . 'keyword">::</span>');
         $this->_addPattern('/class\s([^\s]+)/', 'class <span class="' . $this->_css_prefix . 'method">$1</span>');
         $this->_addPattern('/\.(?![^\'\"\s]*([\'\"]))/', '<span class="' . $this->_css_prefix . 'keyword">.</span>');
