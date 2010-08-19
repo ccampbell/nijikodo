@@ -12,6 +12,10 @@
     white-space: pre-wrap;
 }
 
+.niji_code em {
+    font-style: italic;
+}
+
 .niji_html {
     color: #7F90AA;
 }
