@@ -223,7 +223,7 @@ class Generic
      */
     protected function _addConstantsPattern()
     {
-        $this->_addPattern('/(?<!\w|>)([A-Z_0-9]{2,})(?!\w|\[)/x', '<span class="' . $this->_css_prefix . 'int">$1</span>');
+        $this->_addPattern('/(?<!\w|>|\$)([A-Z_0-9]{2,})(?!\w|\[)/x', '<span class="' . $this->_css_prefix . 'int">$1</span>');
     }
 
     /**
