@@ -35,6 +35,10 @@ class Php extends Generic
 
         $this->_addPattern('/instanceof\s(.+)\)/', '<span class="' . $this->_css_prefix . 'keyword">instanceof</span> <span class="' . $this->_css_prefix . 'function">$1</span>)');
 
+        // namespace stuff
+        $this->_addPattern('/use\s(((\\\)[a-zA-Z_0-9]+){1,});/', '<span class="' . $this->_css_prefix . 'keyword">use</span> <span class="' . $this->_css_prefix . 'function">$1</span>;');
+        $this->_addPattern('/\\\/', '<span class="' . $this->_css_prefix . 'default">\\</span>');
+
         // keep this in??
         $this->_addPattern('/echo/', '<span class="' . $this->_css_prefix . 'function">echo</span>');
 
