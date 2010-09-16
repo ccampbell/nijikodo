@@ -1,5 +1,6 @@
 <?php
 namespace Nijikodo\Language;
+include_once 'Php.php';
 
 /**
  * Html code processor
