@@ -187,7 +187,6 @@ class Nijikodo
         $code = $matches[3];
 
         $code = ltrim($code, "\n");
-        $code = rtrim($code, "\n");
 
         $token = 'code:' . uniqid();
         $html = self::toHtml($code, $language, $height);
