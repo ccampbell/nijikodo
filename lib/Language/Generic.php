@@ -236,7 +236,7 @@ class Generic
         $this->_addPattern('/(?<!\w|\$|\%|\@|>)(and|or|xor|for|do|while|foreach|as|return|die|exit|if|then|else|
             elseif|new|delete|try|throw|catch|finally|endif|endforeach|endswitch|class|abstract|function|string|
             array|object|resource|var|bool|boolean|int|integer|float|double|
-            real|string|array|global|const|case|static|public|private|protected|
+            real|string|array|global|const|case|break|continue|static|public|private|protected|
             published|extends|switch|void|this|self|struct|
             char|signed|unsigned|short|long)(?!\w|=")/ix', '<span class="' . $this->_css_prefix . 'keyword">$1</span>');
     }
