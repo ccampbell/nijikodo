@@ -20,7 +20,7 @@ class Ini extends Generic
         parent::_addStringPattern();
         parent::_addMathPattern();
         parent::_addNumberPattern();
-        $this->_addPattern('/(\[.*\])/', '<span class="' . $this->_css_prefix . 'method">$1</span>');
+        $this->_addPattern('/(?<![a-zA-Z0-9_])(\[.*\])/', '<span class="' . $this->_css_prefix . 'method">$1</span>');
         $this->_addPattern('/\[(.*\s?\:\s?)(.*)\]/', '[$1<em>$2</em>]');
     }
 }
