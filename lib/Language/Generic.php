@@ -233,7 +233,7 @@ class Generic
      */
     protected function _addKeywordPattern()
     {
-        $this->_addPattern('/(?<!\w|\$|\%|\@|>)(and|or|xor|for|do|while|foreach|as|return|die|exit|if|then|else|
+        $this->_addPattern('/(?<!\w|\$|\%|\@|>|\\\)(and|or|xor|for|do|while|foreach|as|return|die|exit|if|then|else|
             elseif|new|delete|try|throw|catch|finally|endif|endforeach|endswitch|class|abstract|function|string|
             array|object|resource|var|bool|boolean|int|integer|float|double|
             real|string|array|global|const|case|break|continue|static|public|private|protected|
