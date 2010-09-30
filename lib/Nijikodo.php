@@ -66,6 +66,10 @@ class Nijikodo
                 require_once 'Language/Ini.php';
                 $code = new Nijikodo\Language\Ini($code);
                 break;
+            case 'text':
+                require_once 'Language/Text.php';
+                $code = new Nijikodo\Language\Text($code);
+                break;
             default:
                 $code = new Nijikodo\Language\Generic($code);
                 break;
