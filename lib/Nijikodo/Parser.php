@@ -1,5 +1,6 @@
 <?php
-include 'Language/Generic.php';
+namespace Nijikodo;
+require 'Language/Generic.php';
 
 /**
  * server side library for syntax highlighting code snippets
@@ -7,7 +8,7 @@ include 'Language/Generic.php';
  * @package Nijikodo
  * @author Craig Campbell <iamcraigcampbell@gmail.com>
  */
-class Nijikodo
+class Parser
 {
     /**
      * @var string
@@ -39,49 +40,49 @@ class Nijikodo
         switch ($language) {
             case 'php':
                 require_once 'Language/Php.php';
-                $code = new Nijikodo\Language\Php($code);
+                $code = new Language\Php($code);
                 break;
             case 'html':
             case 'xml':
                 require_once 'Language/Html.php';
-                $code =  new Nijikodo\Language\Html($code);
+                $code =  new Language\Html($code);
                 break;
             case 'css':
                 require_once 'Language/Css.php';
-                $code = new Nijikodo\Language\Css($code);
+                $code = new Language\Css($code);
                 break;
             case 'javascript':
                 require_once 'Language/Javascript.php';
-                $code = new Nijikodo\Language\Javascript($code);
+                $code = new Language\Javascript($code);
                 break;
             case 'shell':
                 require_once 'Language/Shell.php';
-                $code = new Nijikodo\Language\Shell($code);
+                $code = new Language\Shell($code);
                 break;
             case 'apache':
                 require_once 'Language/Apache.php';
-                $code = new Nijikodo\Language\Apache($code);
+                $code = new Language\Apache($code);
                 break;
             case 'ini':
                 require_once 'Language/Ini.php';
-                $code = new Nijikodo\Language\Ini($code);
+                $code = new Language\Ini($code);
                 break;
             case 'text':
                 require_once 'Language/Text.php';
-                $code = new Nijikodo\Language\Text($code);
+                $code = new Language\Text($code);
                 break;
             default:
-                $code = new Nijikodo\Language\Generic($code);
+                $code = new Language\Generic($code);
                 break;
         }
 
-        $code->setCssPrefix(self::$_css_prefix);
+        $code->setCssPrefix(static::$_css_prefix);
 
         // hate outputting html in php but that is the point of this library
-        $output = '<div class="' . self::$_css_prefix . 'code';
+        $output = '<div class="' . static::$_css_prefix . 'code';
 
         if ($language !== null) {
-            $output .= ' ' . self::$_css_prefix . $language . '" style="';
+            $output .= ' ' . static::$_css_prefix . $language . '" style="';
         }
 
         // $output .= 'font-family: \'monaco\',courier,monospace; white-space: pre-wrap;';
@@ -105,7 +106,7 @@ class Nijikodo
      */
     public static function setCssPrefix($prefix = self::DEFAULT_CSS_PREFIX)
     {
-        self::$_css_prefix = $prefix;
+        static::$_css_prefix = $prefix;
     }
 
     /**
@@ -116,8 +117,8 @@ class Nijikodo
      */
     public static function process($text, $use_pre_tag = false)
     {
-        $text = self::tokenizeCodeBlocks($text);
-        return self::replaceTokens($text, $use_pre_tag);
+        $text = static::tokenizeCodeBlocks($text);
+        return static::replaceTokens($text, $use_pre_tag);
     }
 
     /**
@@ -128,7 +129,7 @@ class Nijikodo
      */
     public static function tokenizeCodeBlocks($text)
     {
-        $text = preg_replace_callback('/\{code(:)?([^\}]+\b)?\}(.+?)(\{code\})(\n)?/is', 'self::_tokenizeCodeBlock', $text);
+        $text = preg_replace_callback('/\{code(:)?([^\}]+\b)?\}(.+?)(\{code\})(\n)?/is', 'static::_tokenizeCodeBlock', $text);
         return $text;
     }
 
@@ -141,7 +142,7 @@ class Nijikodo
      */
     public static function replaceTokens($text, $use_pre_tag = false)
     {
-        foreach (self::$_tokenized as $key => $value) {
+        foreach (static::$_tokenized as $key => $value) {
             $text = str_replace($key, $use_pre_tag ? '<code><pre>' . $value . '</pre></code>' : $value, $text);
         }
 
@@ -168,7 +169,7 @@ class Nijikodo
         $text = ob_get_contents();
         ob_end_clean();
         // replace code blocks with magic things we will replace later
-        return self::process($text);
+        return static::process($text);
     }
 
     /**
@@ -193,9 +194,9 @@ class Nijikodo
         $code = ltrim($code, "\n");
 
         $token = 'code:' . uniqid();
-        $html = self::toHtml($code, $language, $height);
+        $html = static::toHtml($code, $language, $height);
 
-        self::$_tokenized[$token] = $html;
+        static::$_tokenized[$token] = $html;
 
         return $token;
     }
