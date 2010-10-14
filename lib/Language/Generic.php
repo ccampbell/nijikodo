@@ -193,7 +193,7 @@ class Generic
      */
     protected function _addStringPattern()
     {
-        $this->_addPattern('/(\/\*.*?\*\/|\/\/.*?\n|\#.*?\n|(?<!\\\)&quot;.*?(?<!\\\)&quot;|(?<!\\\)\'(.*?)(?<!\\\)\')/isex', 'self::_tokenize(\'$1\')');
+        $this->_addPattern('/(\/\*.*?\*\/|(?<!\:)\/\/.*?\n|\#.*?\n|(?<!\\\)&quot;.*?(?<!\\\)&quot;|(?<!\\\)\'(.*?)(?<!\\\)\')/isex', 'self::_tokenize(\'$1\')');
     }
 
     /**
