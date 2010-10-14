@@ -1,10 +1,10 @@
-<?php include 'lib/Nijikodo.php'; ?>
+<?php require 'lib/Nijikodo/Parser.php'; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>nijikodo demo page</title>
+    <title>Nijikodo demo page</title>
     <link href="css/default.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .niji_code { width: 650px; }
@@ -26,18 +26,18 @@
 
 <h2>usage</h2>
 <p>to install put the lib directory somewhere in your include path:</p>
-<?php Nijikodo::captureStart(); ?>
+<?php Nijikodo\Parser::captureStart(); ?>
 {code:php}
-include 'lib/Nijikodo.php';
+require 'lib/Nijikodo/Parser.php';
 
 // you can optionally set a css class prefix (defaults to 'niji_')
-Nijikodo::setCssPrefix('code_');
+Nijikodo\Parser::setCssPrefix('code_');
 {code}
 
 <p>to syntax highlight code from a form field:</p>
 {code:php}
 $text = $_POST['text'];
-$text = Nijikodo::process($text);
+$text = Nijikodo\Parser::process($text);
 {code}
 
 <p>use these special tags in the form field to specify that this block of text is code:</p>
@@ -50,7 +50,7 @@ $text = Nijikodo::process($text);
 <p>this can also be done directly in a view using output buffering like so:</p>
 {code:html}
 <!-- begin capturing code -->
-&lt;?php Nijikodo::captureStart(); ?&gt;
+&lt;?php Nijikodo\Parser::captureStart(); ?&gt;
 {code}
 {code:shell}
 &#123;code:javascript&#125;
@@ -59,21 +59,21 @@ $text = Nijikodo::process($text);
 {code}
 {code:html}
 <!-- output what has been captured -->
-&lt;?php echo Nijikodo::output(); ?&gt;
+&lt;?php echo Nijikodo\Parser::output(); ?&gt;
 {code}
 
 <p>additionally if you have a string that you already know is a specific type of code you can do this:</p>
 {code:php}
 $string = '&lt;p&gt;this is my string&lt;/p&gt;';
-$html_string = Nijikodo::toHtml($string, 'html');
+$html_string = Nijikodo\Parser::toHtml($string, 'html');
 {code}
 
 <p>finally if you would like to run your string through some other functions you can tokenize the code blocks and fill them back in later</p>
 {code:php}
 $text = $_POST['text'];
-$text = Nijikodo::tokenizeCodeBlocks($text);
+$text = Nijikodo\Parser::tokenizeCodeBlocks($text);
 $text = nl2br($text);
-$text = Nijikodo::replaceTokens($text);
+$text = Nijikodo\Parser::replaceTokens($text);
 {code}
 
 
@@ -195,6 +195,6 @@ $(document).ready(function() {
 }
 
 {code}
-<?php echo Nijikodo::output(); ?>
+<?php echo Nijikodo\Parser::output(); ?>
 </body>
 </html>
