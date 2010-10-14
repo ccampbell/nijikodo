@@ -41,7 +41,7 @@ $text = Nijikodo\Parser::process($text);
 {code}
 
 <p>use these special tags in the form field to specify that this block of text is code:</p>
-{code:shell}
+{code:text}
 &#123;code:language|height:200&#125;
 // this is where the code goes
 &#123;code&#125;
@@ -52,7 +52,7 @@ $text = Nijikodo\Parser::process($text);
 <!-- begin capturing code -->
 &lt;?php Nijikodo\Parser::captureStart(); ?&gt;
 {code}
-{code:shell}
+{code:text}
 &#123;code:javascript&#125;
 // code goes here
 &#123;code&#125;
